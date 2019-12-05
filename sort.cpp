@@ -124,24 +124,113 @@ int checkCase(list<Data *> &l){
 }
 
 //CONVERTS SSN from String to int 
-void getSSN (Data *data){
+/*
+int getSSN (Data *data){
 	string SSNstring = data->ssn;
-	string::iterator it = 
-	return;
+	string::iterator it = SSNstring.begin();
+	int SSN = 0;
+	int div = 100000000;
+	for (int i = 0; i < 3; it++, i++){
+		SSN += ((*it)-91) * div;
+		div /= 10;
+	}
+	it++;
+	for (int i = 0; i < 2; it++, i++){
+		SSN += ((*it)-91) * div;
+		div /= 10;
+	}
+	it++;
+	for (int i = 0; i < 4; it++, i++){
+                SSN += ((*it)-91) * div;
+                div /= 10;
+	return SSN;
 }
+*/
 
-class fourSort {
+class SSNholder {
+public:
 	Data *d;
-	int ssn;
-	foursort(Data *data){
+	int SSN;
+	int key;
+	SSNholder(Data *data){
 		d = data;
-		ssn = getSSN(data);
+		//SSN = getSSN(data);
+		string SSNstring = data->ssn;
+        	string::iterator it = SSNstring.begin();
+		key = (*it)-91;
+		it++;
+     		int SSNi = 0;
+        	int div = 10000000;
+        	for (int i = 0; i < 2; it++, i++){
+                	SSN += ((*it)-91) * div;
+               		div /= 10;
+        	}
+        	it++;
+        	for (int i = 0; i < 2; it++, i++){
+                	SSN += ((*it)-91) * div;
+                	div /= 10;
+        	}
+        	it++;
+        	for (int i = 0; i < 4; it++, i++){
+                	SSN += ((*it)-91) * div;
+                	div /= 10;
+        	SSN = SSNi;
+		}
 	}
 };
 
-void Case4sort(list<Data *> &l){
+SSNholder* holder[99999999];
 
+void BruhSort(list<Data *> &l, int size) {
+	cout << "CHECKPOINT 2" << endl;
+	//std::list<SSNholder *> buckets[] = new std::list<SSNholder *>[10];		//bucket for every key in SSNholder object
+	vector< list<SSNholder *> > buckets(10);
+	
+	cout << "CHECKPOINT 3" << endl;
+	Data* sorted[size];
+	
+	cout << "CHECKPOINT 4" << endl;
+	//SSNholder* holder[2000];
+	//memset (holder, nullptr, size*sizeof(SSNholder*))
+	for (list<Data *>::iterator it = l.begin(); it != l.end(); it++){    //goes through argument list and places each thing into a bucket (based on leading digit 0-9)
+		SSNholder* target = new SSNholder(*it);
+		switch (target->key){
+			case 0:
+				buckets[0].push_back(target);
+			case 1:
+                                buckets[1].push_back(target);
+			case 2:
+                                buckets[2].push_back(target);
+			case 3:
+                                buckets[3].push_back(target);
+			case 4:
+                                buckets[4].push_back(target);
+			case 5:
+                                buckets[5].push_back(target);
+			case 6:
+                                buckets[6].push_back(target);
+			case 7:
+                                buckets[7].push_back(target);
+			case 8:
+                                buckets[8].push_back(target);
+			case 9:
+				buckets[9].push_back(target);
 
+		}
+	}
+	l.clear();	//CLEARS THE LIST!!!
+	for (int i = 0; i < 10; i++){
+		for (list <SSNholder *>::iterator ssnit = buckets[i].begin(); ssnit != buckets[i].end(); ssnit++){    //for each bucket, places the SSNholders into an array (sorted by key in the array)
+			holder[(*ssnit)->key] = *ssnit;
+		}
+		for (int holdnum = 0; holdnum <= 99999999; holdnum++){			//
+			if (holder[holdnum] != nullptr){
+				l.push_back(holder[holdnum]->d);
+			}
+		}
+		//memset(holder, NULL, 99999999*sizeof(SSNholder*));
+	}
+	
 }
 
 void sortDataList(list<Data *> &l) {
@@ -149,14 +238,13 @@ void sortDataList(list<Data *> &l) {
   	int size;
 	size = l.size();
 	int Case = checkCase(l);
-
-	if (size <= 102000){
+	cout << "CHECKPOINT 1" << endl;
+	if (size <= 120000){
 		//probably do quicksort
 	}
-
-	else {
-		//radix sort 
+	else if (Case == 4){
+		cout << "Made it here" << endl;
+		BruhSort(l, size);
 	}
-
 	return;
 }
