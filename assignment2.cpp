@@ -111,6 +111,7 @@ int main() {
 // You may add global variables, functions, and/or
 // class defintions here if you wish.
 
+#include <iomanip>
 
 int checkCase(list<Data *> &l){
         list<Data *>::iterator it= l.begin();
@@ -124,61 +125,457 @@ int checkCase(list<Data *> &l){
         return 0;
 }
 
-void insertionSort(int &array[], int size){
-
-	return;
-}
-
-int SSNtoINT(string ssn){
-
-	return ssnint;
-}
-
-void Case3(list <Data *> &l){
-	int daddyArray[8];
-	int 8array[8];
-	int 7array[7];
-	int 6array[6];
-	int 5array[5];
-	int 4array[4];
-	int 3array[3];
-	int 2array[2];
-	int currentSize = 0;
-	list<Data *>iterator nextit = l.begin();
-	nexitit++;					//nextit will always be one after the listit
-	list<Data *>iterator beginit = l.begin();
-	for (list<Data *>::iterator listit = l.begin(); listit != l.end; listit++){
-		if((*listit)->(firstName.front()) == (*nextit)->(firstName.front())){
-			nextit++;
-			daddyArray[currentSize] = SSNtoINT((*listit)->ssn);
-			currentSize++;
-		}
-		else if ((*listit)->(firstName.front()) != (*nextit)->(firstName.front())){
-			daddyArray[currentSize] = SSNtoINT((*listit)->ssn);
-			currentSize++;				//currentSize will now match the size of the array, not the index of the array
-
-			switch (currentSize) {				//ordered by most likely
-				case 4:
-					memcpy(4array, daddyArray, currentSize * sizeof(int));
-					insertionSort(4array, currentSize);
-
-
-
-
-			
-
-			}
-			beginit = nextit;		//make sure this happens after insertion sort
-			currentSize = 0;
-			nextit++;
-		}
-	}
+void insertionSort(int size, int *array){
 	
 	return;
 }
 
+int SSNtoINT(string ssn){
+	string::iterator stit = ssn.begin();
+	return ((stit[0])-48)*100000000
+		+ ((stit[1])-48)*10000000
+		+ ((stit[2])-48)*1000000
+		+ ((stit[4])-48)*100000
+		+ ((stit[5])-48)*10000
+		+ ((stit[7])-48)*1000
+		+ ((stit[8])-48)*100
+		+ ((stit[9])-48)*10
+		+ ((stit[10])-48);
+}
+
+string INTtoSSN(int ssnint){
+	string ssnstr;
+	ostringstream oss;
+	//oss << ssnint;
+	//cout << ssnint << endl; //test
+	//oss << setfill('0');
+	oss << std::setfill('0') << std::setw(9) << ssnint;
+	return oss.str().insert(3, "-").insert(6, "-");
+}
+
+void Case3(list <Data *> &l){
+
+	int i, key, j;
+	int daddyArray[18];
+	int eighteenarray[18];
+	int seventeenarray[17];
+	int sixteenarray[16];
+	int fifteenarray[15];
+	int fourteenarray[14];
+	int thirteenarray[13];
+	int twelvearray[12];
+	int elevenarray[11];
+	int tenarray [10];
+	int ninearray[9];
+	int eightarray[8];
+	int sevenarray[7];
+	int sixarray[6];
+	int fivearray[5];
+	int fourarray[4];
+	int threearray[3];
+	int twoarray[2];
+	int size = 1; //size
+	int fullsize = l.size();
+	int currentSize = 0;
+	list<Data *>::iterator nextit = l.begin();
+	nextit++;					//nextit will always be one after the listit
+	list<Data *>::iterator beginit = l.begin();
+	for (list<Data *>::iterator listit = l.begin(); size < fullsize; listit++){
+		if((*listit)->firstName == (*nextit)->firstName){
+			//cout << (*listit)->lastName<< " " << (*listit)->firstName << " " << (*listit)->ssn << endl;
+                        //cout << (*nextit)->lastName<< " " << (*nextit)->firstName << " " << (*nextit)->ssn << endl;
+
+			nextit++;
+			daddyArray[currentSize] = SSNtoINT((*listit)->ssn);
+			currentSize++;
+			//cout << "check 1" << endl;
+			size++;
+			//cout << "Check 11111" << endl;
+			//cout << size << endl;
+                }
+
+		
+		else if ((*listit)->firstName != (*nextit)->firstName){
+			daddyArray[currentSize] = SSNtoINT((*listit)->ssn);
+			currentSize++;				//currentSize will now match the size of the array, not the index of the array
+			//cout << "check 2" << endl;
+			//cout << currentSize << endl;
+			switch (currentSize) {				//ordered by most likely
+				case 4:
+					memcpy(fourarray, daddyArray, (currentSize) * sizeof(int));
+					//insertionSort(currentSize, fourarray);
+
+					for (i = 1; i < currentSize; i++) {  
+						key = fourarray[i];  
+						j = i - 1;  
+  
+						/* Move elements of arr[0..i-1], that are  
+						 * greater than key, to one position ahead  
+						 * of their current position */
+						while (j >= 0 && fourarray[j] > key) {  
+							fourarray[j + 1] = fourarray[j];  
+							j = j - 1;  
+						}  
+						fourarray[j + 1] = key;  
+					}  
+
+					for (int i = 0; i < currentSize; i++){
+
+						(*beginit)->ssn = INTtoSSN(fourarray[i]);
+						beginit++;
+						//cout << "HERE" << endl;
+					}
+					break;
+
+				case 3:
+					memcpy(threearray, daddyArray, (currentSize) * sizeof(int));
+					//insertionSort(currentSize, threearray);
+					
+					 for (i = 1; i < currentSize; i++) {
+                                                key = threearray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && threearray[j] > key) {
+                                                        threearray[j + 1] = threearray[j];
+                                                        j = j - 1;
+                                                }
+                                                threearray[j + 1] = key;
+                                        }
+
+					
+
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(threearray[i]);
+                                                beginit++;
+					}
+					break;
+				case 5:
+					memcpy(fivearray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, fivearray);
+					
+					for (i = 1; i < currentSize; i++) {
+                                                key = fivearray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && fivearray[j] > key) {
+                                                        fivearray[j + 1] = fivearray[j];
+                                                        j = j - 1;
+                                                }
+                                                fivearray[j + 1] = key;
+                                        }
 
 
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(fivearray[i]);
+                                                beginit++;
+                                        }
+					break;
+				case 2:
+					memcpy(twoarray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize ,twoarray);
+                                        
+					for (i = 1; i < currentSize; i++) {
+                                                key = twoarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && twoarray[j] > key) {
+                                                        twoarray[j + 1] = twoarray[j];
+                                                        j = j - 1;
+                                                }
+                                                twoarray[j + 1] = key;
+                                        }
+					
+					
+					for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(twoarray[i]);
+                                                beginit++;
+                                        }
+					break;
+				case 6:
+					memcpy(sixarray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, sixarray);
+                                        
+					for (i = 1; i < currentSize; i++) {
+                                                key = sixarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && sixarray[j] > key) {
+                                                        sixarray[j + 1] = sixarray[j];
+                                                        j = j - 1;
+                                                }
+                                                sixarray[j + 1] = key;
+                                        }
+					
+					for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(sixarray[i]);
+                                                beginit++;
+                                        }
+					break;
+				case 7:
+					memcpy(sevenarray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, sevenarray);
+                                        
+					for (i = 1; i < currentSize; i++) {
+                                                key = sevenarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && sevenarray[j] > key) {
+                                                        sevenarray[j + 1] = sevenarray[j];
+                                                        j = j - 1;
+                                                }
+                                                sevenarray[j + 1] = key;
+                                        }
+
+					
+					
+					for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(sevenarray[i]);
+                                                beginit++;
+                                        }
+					break;
+				case 8:
+					memcpy(eightarray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, eightarray);
+                                        
+					for (i = 1; i < currentSize; i++) {
+                                                key = eightarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && eightarray[j] > key) {
+                                                        eightarray[j + 1] = eightarray[j];
+                                                        j = j - 1;
+                                                }
+                                                eightarray[j + 1] = key;
+                                        }
+
+					
+					
+					
+					for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(eightarray[i]);
+                                                beginit++;
+                                        }
+					break;
+				case 9:
+					memcpy(ninearray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, ninearray);
+					
+					for (i = 1; i < currentSize; i++) {
+                                                key = ninearray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && ninearray[j] > key) {
+                                                        ninearray[j + 1] = ninearray[j];
+                                                        j = j - 1;
+                                                }
+                                                ninearray[j + 1] = key;
+                                        }
+
+
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(ninearray[i]);
+                                                beginit++;
+					}
+					break;
+				case 10:
+					memcpy(tenarray, daddyArray, (currentSize) * sizeof(int));
+                                        
+					for (i = 1; i < currentSize; i++) {
+                                                key = tenarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && tenarray[j] > key) {
+                                                        tenarray[j + 1] = tenarray[j];
+                                                        j = j - 1;
+                                                }
+                                                tenarray[j + 1] = key;
+                                        }
+
+					
+					
+					
+					//insertionSort(currentSize, tenarray);
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(tenarray[i]);
+                                                beginit++;
+					}
+					break;
+
+				 case 11:
+                                        memcpy(elevenarray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, ninearray);
+
+                                        for (i = 1; i < currentSize; i++) {
+                                                key = elevenarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && elevenarray[j] > key) {
+                                                        elevenarray[j + 1] = elevenarray[j];
+                                                        j = j - 1;
+                                                }
+                                                elevenarray[j + 1] = key;
+                                        }
+
+
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(elevenarray[i]);
+                                                beginit++;
+                                        }
+                                        break;
+
+
+				case 12:
+                                        memcpy(twelvearray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, ninearray);
+
+                                        for (i = 1; i < currentSize; i++) {
+                                                key = twelvearray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && twelvearray[j] > key) {
+                                                        twelvearray[j + 1] = twelvearray[j];
+                                                        j = j - 1;
+                                                }
+                                                twelvearray[j + 1] = key;
+                                        }
+
+
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(twelvearray[i]);
+                                                beginit++;
+                                        }
+                                        break;
+
+				 case 13:
+                                        memcpy(thirteenarray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, ninearray);
+
+                                        for (i = 1; i < currentSize; i++) {
+                                                key = thirteenarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && thirteenarray[j] > key) {
+                                                        thirteenarray[j + 1] = thirteenarray[j];
+                                                        j = j - 1;
+                                                }
+                                                thirteenarray[j + 1] = key;
+                                        }
+
+
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(thirteenarray[i]);
+                                                beginit++;
+                                        }
+                                        break;
+				case 14:
+                                        memcpy(fourteenarray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, ninearray);
+
+                                        for (i = 1; i < currentSize; i++) {
+                                                key = fourteenarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && fourteenarray[j] > key) {
+                                                        fourteenarray[j + 1] = fourteenarray[j];
+                                                        j = j - 1;
+                                                }
+                                                fourteenarray[j + 1] = key;
+                                        }
+
+
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(fourteenarray[i]);
+                                                beginit++;
+                                        }
+                                        break;
+
+				 case 15:
+                                        memcpy(fifteenarray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, ninearray);
+
+                                        for (i = 1; i < currentSize; i++) {
+                                                key = fifteenarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && fifteenarray[j] > key) {
+                                                        fifteenarray[j + 1] = fifteenarray[j];
+                                                        j = j - 1;
+                                                }
+                                                fifteenarray[j + 1] = key;
+                                        }
+
+
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(fifteenarray[i]);
+                                                beginit++;
+                                        }
+                                        break;
+				 case 16:
+                                        memcpy(sixteenarray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, ninearray);
+
+                                        for (i = 1; i < currentSize; i++) {
+                                                key = sixteenarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && sixteenarray[j] > key) {
+                                                        sixteenarray[j + 1] = sixteenarray[j];
+                                                        j = j - 1;
+                                                }
+                                                sixteenarray[j + 1] = key;
+                                        }
+
+
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(sixteenarray[i]);
+                                                beginit++;
+                                        }
+                                        break;
+				case 17:
+                                        memcpy(seventeenarray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, ninearray);
+
+                                        for (i = 1; i < currentSize; i++) {
+                                                key = seventeenarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && seventeenarray[j] > key) {
+                                                        seventeenarray[j + 1] = seventeenarray[j];
+                                                        j = j - 1;
+                                                }
+                                                seventeenarray[j + 1] = key;
+                                        }
+
+
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(seventeenarray[i]);
+                                                beginit++;
+                                        }
+                                        break;
+				case 18:
+                                        memcpy(eighteenarray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, ninearray);
+
+                                        for (i = 1; i < currentSize; i++) {
+                                                key = eighteenarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && eighteenarray[j] > key) {
+                                                        eighteenarray[j + 1] = eighteenarray[j];
+                                                        j = j - 1;
+                                                }
+                                                eighteenarray[j + 1] = key;
+                                        }
+
+
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(eighteenarray[i]);
+                                                beginit++;
+                                        }
+                                        break;
+
+
+			}
+			//cout << "MWAH" << endl;
+			beginit = nextit;		//make sure this happens after insertion sort
+			if (currentSize > 10){
+				cout <<"bigger" << endl;
+			}
+			currentSize = 0;
+			if (size < fullsize){
+				nextit++;
+				//cout << (*nextit)->lastName << " " << (*nextit)->firstName << endl;
+			}
+			//cout << "YEET" << endl;
+			size++;
+		}
+	}
+	return;
+}
 
 void sortDataList(list<Data *> &l) {
   // Fill this in
