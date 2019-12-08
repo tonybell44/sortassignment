@@ -156,7 +156,10 @@ string INTtoSSN(int ssnint){
 void Case3(list <Data *> &l){
 
 	int i, key, j;
-	int daddyArray[18];
+
+	int daddyArray[20];
+	int twentyarray[20];
+	int nineteenarray[19];
 	int eighteenarray[18];
 	int seventeenarray[17];
 	int sixteenarray[16];
@@ -174,6 +177,7 @@ void Case3(list <Data *> &l){
 	int fourarray[4];
 	int threearray[3];
 	int twoarray[2];
+	
 	int size = 1; //size
 	int fullsize = l.size();
 	int currentSize = 0;
@@ -182,24 +186,17 @@ void Case3(list <Data *> &l){
 	list<Data *>::iterator beginit = l.begin();
 	for (list<Data *>::iterator listit = l.begin(); size < fullsize; listit++){
 		if((*listit)->firstName == (*nextit)->firstName){
-			//cout << (*listit)->lastName<< " " << (*listit)->firstName << " " << (*listit)->ssn << endl;
-                        //cout << (*nextit)->lastName<< " " << (*nextit)->firstName << " " << (*nextit)->ssn << endl;
 
 			nextit++;
 			daddyArray[currentSize] = SSNtoINT((*listit)->ssn);
 			currentSize++;
-			//cout << "check 1" << endl;
 			size++;
-			//cout << "Check 11111" << endl;
-			//cout << size << endl;
                 }
 
 		
 		else if ((*listit)->firstName != (*nextit)->firstName){
 			daddyArray[currentSize] = SSNtoINT((*listit)->ssn);
 			currentSize++;				//currentSize will now match the size of the array, not the index of the array
-			//cout << "check 2" << endl;
-			//cout << currentSize << endl;
 			switch (currentSize) {				//ordered by most likely
 				case 4:
 					memcpy(fourarray, daddyArray, (currentSize) * sizeof(int));
@@ -209,9 +206,6 @@ void Case3(list <Data *> &l){
 						key = fourarray[i];  
 						j = i - 1;  
   
-						/* Move elements of arr[0..i-1], that are  
-						 * greater than key, to one position ahead  
-						 * of their current position */
 						while (j >= 0 && fourarray[j] > key) {  
 							fourarray[j + 1] = fourarray[j];  
 							j = j - 1;  
@@ -223,7 +217,6 @@ void Case3(list <Data *> &l){
 
 						(*beginit)->ssn = INTtoSSN(fourarray[i]);
 						beginit++;
-						//cout << "HERE" << endl;
 					}
 					break;
 
@@ -557,25 +550,80 @@ void Case3(list <Data *> &l){
                                                 beginit++;
                                         }
                                         break;
+				
+
+				 case 19:
+                                        memcpy(nineteenarray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, ninearray);
+
+                                        for (i = 1; i < currentSize; i++) {
+                                                key = nineteenarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && nineteenarray[j] > key) {
+                                                        nineteenarray[j + 1] = nineteenarray[j];
+                                                        j = j - 1;
+                                                }
+                                                nineteenarray[j + 1] = key;
+                                        }
+
+
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(nineteenarray[i]);
+                                                beginit++;
+                                        }
+                                        break;
+
+				 case 20:
+                                        memcpy(twentyarray, daddyArray, (currentSize) * sizeof(int));
+                                        //insertionSort(currentSize, ninearray);
+
+                                        for (i = 1; i < currentSize; i++) {
+                                                key = twentyarray[i];
+                                                j = i - 1;
+                                                while (j >= 0 && twentyarray[j] > key) {
+                                                        twentyarray[j + 1] = twentyarray[j];
+                                                        j = j - 1;
+                                                }
+                                                twentyarray[j + 1] = key;
+                                        }
+
+
+                                        for (int i = 0; i < currentSize; i++){
+                                                (*beginit)->ssn = INTtoSSN(twentyarray[i]);
+                                                beginit++;
+                                        }
+                                        break;
 
 
 			}
-			//cout << "MWAH" << endl;
 			beginit = nextit;		//make sure this happens after insertion sort
-			if (currentSize > 10){
-				cout <<"bigger" << endl;
-			}
 			currentSize = 0;
 			if (size < fullsize){
 				nextit++;
-				//cout << (*nextit)->lastName << " " << (*nextit)->firstName << endl;
 			}
-			//cout << "YEET" << endl;
 			size++;
 		}
 	}
 	return;
 }
+
+//CASE 4 STARTS RIGHT AFTER HERE!!!
+
+
+void Case4(list<Data *> &l){
+
+
+
+
+	return;
+}
+
+
+
+
+
+
+
 
 void sortDataList(list<Data *> &l) {
   // Fill this in
@@ -592,7 +640,7 @@ void sortDataList(list<Data *> &l) {
 	}
         else if (Case == 4){
                 cout << "We got a case 4" << endl;
+		Case4(l);
         }
         return;
 }
-                                
