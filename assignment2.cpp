@@ -124,11 +124,8 @@ int checkCase(list<Data *> &l){
         }
         return 0;
 }
-
-void insertionSort(int size, int *array){
 	
-	return;
-}
+
 
 int SSNtoINT(string ssn){
 	string::iterator stit = ssn.begin();
@@ -144,11 +141,7 @@ int SSNtoINT(string ssn){
 }
 
 string INTtoSSN(int ssnint){
-	string ssnstr;
 	ostringstream oss;
-	//oss << ssnint;
-	//cout << ssnint << endl; //test
-	//oss << setfill('0');
 	oss << std::setfill('0') << std::setw(9) << ssnint;
 	return oss.str().insert(3, "-").insert(6, "-");
 }
@@ -199,7 +192,7 @@ void Case3(list <Data *> &l){
 			currentSize++;				//currentSize will now match the size of the array, not the index of the array
 			switch (currentSize) {				//ordered by most likely
 				case 4:
-					memcpy(fourarray, daddyArray, (currentSize) * sizeof(int));
+					memmove(fourarray, daddyArray, (currentSize) * sizeof(int));
 					//insertionSort(currentSize, fourarray);
 
 					for (i = 1; i < currentSize; i++) {  
@@ -221,7 +214,7 @@ void Case3(list <Data *> &l){
 					break;
 
 				case 3:
-					memcpy(threearray, daddyArray, (currentSize) * sizeof(int));
+					memmove(threearray, daddyArray, (currentSize) * sizeof(int));
 					//insertionSort(currentSize, threearray);
 					
 					 for (i = 1; i < currentSize; i++) {
@@ -242,7 +235,7 @@ void Case3(list <Data *> &l){
 					}
 					break;
 				case 5:
-					memcpy(fivearray, daddyArray, (currentSize) * sizeof(int));
+					memmove(fivearray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, fivearray);
 					
 					for (i = 1; i < currentSize; i++) {
@@ -262,7 +255,7 @@ void Case3(list <Data *> &l){
                                         }
 					break;
 				case 2:
-					memcpy(twoarray, daddyArray, (currentSize) * sizeof(int));
+					memmove(twoarray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize ,twoarray);
                                         
 					for (i = 1; i < currentSize; i++) {
@@ -282,7 +275,7 @@ void Case3(list <Data *> &l){
                                         }
 					break;
 				case 6:
-					memcpy(sixarray, daddyArray, (currentSize) * sizeof(int));
+					memmove(sixarray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, sixarray);
                                         
 					for (i = 1; i < currentSize; i++) {
@@ -301,7 +294,7 @@ void Case3(list <Data *> &l){
                                         }
 					break;
 				case 7:
-					memcpy(sevenarray, daddyArray, (currentSize) * sizeof(int));
+					memmove(sevenarray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, sevenarray);
                                         
 					for (i = 1; i < currentSize; i++) {
@@ -322,7 +315,7 @@ void Case3(list <Data *> &l){
                                         }
 					break;
 				case 8:
-					memcpy(eightarray, daddyArray, (currentSize) * sizeof(int));
+					memmove(eightarray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, eightarray);
                                         
 					for (i = 1; i < currentSize; i++) {
@@ -344,7 +337,7 @@ void Case3(list <Data *> &l){
                                         }
 					break;
 				case 9:
-					memcpy(ninearray, daddyArray, (currentSize) * sizeof(int));
+					memmove(ninearray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, ninearray);
 					
 					for (i = 1; i < currentSize; i++) {
@@ -364,7 +357,7 @@ void Case3(list <Data *> &l){
 					}
 					break;
 				case 10:
-					memcpy(tenarray, daddyArray, (currentSize) * sizeof(int));
+					memmove(tenarray, daddyArray, (currentSize) * sizeof(int));
                                         
 					for (i = 1; i < currentSize; i++) {
                                                 key = tenarray[i];
@@ -387,7 +380,7 @@ void Case3(list <Data *> &l){
 					break;
 
 				 case 11:
-                                        memcpy(elevenarray, daddyArray, (currentSize) * sizeof(int));
+                                        memmove(elevenarray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, ninearray);
 
                                         for (i = 1; i < currentSize; i++) {
@@ -409,7 +402,7 @@ void Case3(list <Data *> &l){
 
 
 				case 12:
-                                        memcpy(twelvearray, daddyArray, (currentSize) * sizeof(int));
+                                        memmove(twelvearray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, ninearray);
 
                                         for (i = 1; i < currentSize; i++) {
@@ -430,7 +423,7 @@ void Case3(list <Data *> &l){
                                         break;
 
 				 case 13:
-                                        memcpy(thirteenarray, daddyArray, (currentSize) * sizeof(int));
+                                        memmove(thirteenarray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, ninearray);
 
                                         for (i = 1; i < currentSize; i++) {
@@ -450,7 +443,7 @@ void Case3(list <Data *> &l){
                                         }
                                         break;
 				case 14:
-                                        memcpy(fourteenarray, daddyArray, (currentSize) * sizeof(int));
+                                        memmove(fourteenarray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, ninearray);
 
                                         for (i = 1; i < currentSize; i++) {
@@ -471,7 +464,7 @@ void Case3(list <Data *> &l){
                                         break;
 
 				 case 15:
-                                        memcpy(fifteenarray, daddyArray, (currentSize) * sizeof(int));
+                                        memmove(fifteenarray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, ninearray);
 
                                         for (i = 1; i < currentSize; i++) {
@@ -491,7 +484,7 @@ void Case3(list <Data *> &l){
                                         }
                                         break;
 				 case 16:
-                                        memcpy(sixteenarray, daddyArray, (currentSize) * sizeof(int));
+                                        memmove(sixteenarray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, ninearray);
 
                                         for (i = 1; i < currentSize; i++) {
@@ -511,7 +504,7 @@ void Case3(list <Data *> &l){
                                         }
                                         break;
 				case 17:
-                                        memcpy(seventeenarray, daddyArray, (currentSize) * sizeof(int));
+                                        memmove(seventeenarray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, ninearray);
 
                                         for (i = 1; i < currentSize; i++) {
@@ -531,7 +524,7 @@ void Case3(list <Data *> &l){
                                         }
                                         break;
 				case 18:
-                                        memcpy(eighteenarray, daddyArray, (currentSize) * sizeof(int));
+                                        memmove(eighteenarray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, ninearray);
 
                                         for (i = 1; i < currentSize; i++) {
@@ -553,7 +546,7 @@ void Case3(list <Data *> &l){
 				
 
 				 case 19:
-                                        memcpy(nineteenarray, daddyArray, (currentSize) * sizeof(int));
+                                        memmove(nineteenarray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, ninearray);
 
                                         for (i = 1; i < currentSize; i++) {
@@ -574,7 +567,7 @@ void Case3(list <Data *> &l){
                                         break;
 
 				 case 20:
-                                        memcpy(twentyarray, daddyArray, (currentSize) * sizeof(int));
+                                        memmove(twentyarray, daddyArray, (currentSize) * sizeof(int));
                                         //insertionSort(currentSize, ninearray);
 
                                         for (i = 1; i < currentSize; i++) {
@@ -610,18 +603,74 @@ void Case3(list <Data *> &l){
 //CASE 4 STARTS RIGHT AFTER HERE!!!
 
 
+void countSort(int arr[], int n, int exp) 
+{ 
+    int output[n]; // output array 
+    int i, count[10] = {0}; 
+  
+    // Store count of occurrences in count[] 
+    for (i = 0; i < n; i++) 
+        count[ (arr[i]/exp)%10 ]++; 
+  
+    // Change count[i] so that count[i] now contains actual 
+    //  position of this digit in output[] 
+    for (i = 1; i < 10; i++) 
+        count[i] += count[i - 1]; 
+  
+    // Build the output array 
+    for (i = n - 1; i >= 0; i--) 
+    { 
+        output[count[ (arr[i]/exp)%10 ] - 1] = arr[i]; 
+        count[ (arr[i]/exp)%10 ]--; 
+    } 
+  
+    // Copy the output array to arr[], so that arr[] now 
+    // contains sorted numbers according to current digit 
+    for (i = 0; i < n; i++) 
+        arr[i] = output[i]; 
+} 
+
+
+
+
+
 void Case4(list<Data *> &l){
 
+	int radixSize = l.size();
+	int fullArray[radixSize];
+	int stopper = 0;
+	list<Data *>::iterator listit = l.begin();
+	for (int j = 0; listit != l.end(); listit++, j++){
+		fullArray[j] = SSNtoINT((*listit)->ssn);
+	}
 
+	//for below function
+	int i, count[10] = {0};
+	int sortArray[radixSize];
 
-
+	for (int digit = 1; stopper < 10; stopper++, digit *= 10){
+		memset(count, 0, 40);
+		for (i = 0; i < radixSize; i++){
+			count[ (fullArray[i]/digit)%10 ]++;
+		}
+		for (i = 1; i < 10; i++){
+			count[i] += count [i-1];
+		}
+		for(i = radixSize-1; i>=0; i--){
+			sortArray[count[(fullArray[i]/digit)%10] - 1] = fullArray[i];
+			count[(fullArray[i]/digit)%10]--;
+		}
+		for(i = 0; i < radixSize; i++){
+			fullArray[i] = sortArray[i];
+		}
+		
+	}
+	listit = l.begin();
+	for (int j = 0; listit != l.end(); listit++, j++){
+		(*listit)->ssn=INTtoSSN(fullArray[j]);
+	}
 	return;
 }
-
-
-
-
-
 
 
 
@@ -635,11 +684,9 @@ void sortDataList(list<Data *> &l) {
                 //probably do quicksort
         }
 	else if (Case == 3){
-		cout << "We got a case 3" << endl;
 		Case3(l);
 	}
         else if (Case == 4){
-                cout << "We got a case 4" << endl;
 		Case4(l);
         }
         return;
