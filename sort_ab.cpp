@@ -147,26 +147,16 @@ string INTtoSSN(int ssnint){
 }
 
 void Case3(list <Data *> &l){
-
 	int i, key, j;
-	int daddyArray[23];
-	int size = 1; //size
+	int daddyArray[100];
+	int size = 0; //size
 	int fullsize = l.size();
 	int currentSize = 0;
-	list<Data *>::iterator nextit = l.begin();
+	list<Data *>::iterator nextit = l.begin(), end = l.end();
 	nextit++;					//nextit will always be one after the listit
 	list<Data *>::iterator beginit = l.begin();
 	for (list<Data *>::iterator listit = l.begin(); size < fullsize; listit++){
-		if((*listit)->firstName == (*nextit)->firstName){
-
-			nextit++;
-			daddyArray[currentSize] = SSNtoINT((*listit)->ssn);
-			currentSize++;
-			size++;
-                }
-
-		
-		else if ((*listit)->firstName != (*nextit)->firstName){
+		if (size == fullsize-1 || (*listit)->firstName != (*nextit)->firstName){
 			daddyArray[currentSize] = SSNtoINT((*listit)->ssn);
 			currentSize++;				//currentSize will now match the size of the array, not the index of the array
 
@@ -189,11 +179,19 @@ void Case3(list <Data *> &l){
 
 			beginit = nextit;		//make sure this happens after insertion sort
 			currentSize = 0;
-			if (size < fullsize){
+			//if (size < fullsize){
 				nextit++;
-			}
+			//}
 			size++;
 		}
+		else if((*listit)->firstName == (*nextit)->firstName){
+
+			nextit++;
+			daddyArray[currentSize] = SSNtoINT((*listit)->ssn);
+			currentSize++;
+			size++;
+                }
+		//cout << size << endl;
 	}
 	return;
 }
@@ -241,32 +239,123 @@ void Case4(list<Data *> &l){
 
 //CASE 1 HERE
 
-
-bool Case1(Data *a, Data *b){
+bool sortCase(Data *a, Data *b){
     if (a->lastName != b->lastName){
         return a->lastName < b->lastName;
-    } 
+    }
     else if (a->firstName != b->firstName){
         return a->firstName < b->firstName;
-    } 
-    else if(a->ssn != b->ssn){
-	return a->ssn < b->ssn;
     }
+    else if(a->ssn != b->ssn){
+        return a->ssn < b->ssn;
+    }
+}
+
+
+struct Hold{
+	//char LName[11];
+	//char FName[11];
+	char Name[30];
+	//char Ssn[12];
+	Data *Store;
+};
+
+
+
+Hold tempArray[1020000];
+
+int sorty(const void* a, const void* b){
+//	if (((Hold*)a)->Name == ((Hold*)b)->Name){
+//		return ((Hold*)a)->Name < ((Hold*)b)->Name;
+//
+//	}
+	if (strcmp(((Hold*)a)->Name, ((Hold*)b)->Name) == 0){
+                return strcmp(((Hold*)a)->Name, ((Hold*)b)->Name) ? -1:1;
+        }
+	/*
+	if (strcmp(((Hold*)a)->LName, ((Hold*)b)->LName) == 0){
+		return strcmp(((Hold*)a)->LName, ((Hold*)b)->LName) ? 1 : -1;
+	}
+	
+	else if (strcmp(((Hold*)a)->FName, ((Hold*)b)->FName) == 0){
+		return strcmp(((Hold*)a)->FName, ((Hold*)b)->FName) ? 1 : -1;
+	}
+	
+	else if(strcmp(((Hold*)a)->Ssn, ((Hold*)b)->Ssn) == 0){
+		return strcmp(((Hold*)a)->Ssn, ((Hold*)b)->Ssn) ? 1 : -1;
+	}
+	*/
+}
+/*
+bool regsort (Hold *a, Hold* b){
+if (strcmp(a->LName, b->LName) != 0){
+        return strcmp(a->LName, b->LName);
+    }
+    else if (strcmp(a->FName, b->FName) != 0){
+        return strcmp(a->FName, b->FName);
+    }
+    else if(strcmp(a->Ssn, b->Ssn) != 0){
+        return strcmp(a->Ssn, b->Ssn);
+    }
+    
+}
+*/
+
+
+void Case1(list<Data *> &l){
+	list<Data *>::iterator it = l.begin();
+	for (int i = 0; i < l.size(); i++, it++){
+		string fullfull = (*it)->lastName + " " + (*it)-> firstName;
+		memmove(tempArray[i].Name, fullfull.c_str(), 30);		//new attempt
+		//memmove (tempArray[i].LName, (*it)->lastName.c_str(), 11);		//check size
+		//memmove (tempArray[i].FName, (*it)->firstName.c_str(), 11);		//check size 
+		//memmove (tempArray[i].Ssn, (*it)->ssn.c_str(), 12);
+		tempArray[i].Store = *it;
+	}
+	qsort(tempArray, l.size(), sizeof(Hold), sorty);
+
+
+	it = l.begin();
+
+	for (int i = 0; i < l.size(); i++, it++){
+		(*it) = tempArray[i].Store;
+	}
+	Case3(l);
+	return;
 }
 
 
 void sortDataList(list<Data *> &l) {
   // Fill this in
+  /*
+  	char Name1[30];
+	char Name2[30];
+  	string ln1 = "BECK";
+	string fn1 = "ERIC";
+	string ln2 = "BECKER";
+	string fn2 = "ISABEL";
+	ln1 = ln1 + fn1;
+	ln2 = ln2 + fn2;
+	memmove(Name1, ln1.c_str(), 30);
+	memmove(Name2, ln2.c_str(), 30);
+	cout << strcmp(Name1, Name2) << endl;
+*/
+
+
+
+  
         int size;
         size = l.size();
         int Case = checkCase(l);
         if (size <= 120000){
-                l.sort(Case1);
+                //l.sort(sortCase);
 		//Case3(l);
+		Case1(l);
         }
 	else if (Case == 0){
-		l.sort(Case1);
+		//l.sort(sortCase);
 		//Case3(l);
+		Case1(l);
 	}
 	else if (Case == 3){
 		Case3(l);
